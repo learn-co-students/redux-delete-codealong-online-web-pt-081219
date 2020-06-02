@@ -4,8 +4,12 @@ import Todo from './Todo'
 
 class TodosContainer extends Component {
 
-  renderTodos = () => this.props.todos.map((todo, id) => <Todo delete={this.props.delete} key={id} text={todo} />)
-
+  renderTodos = () => {
+    return this.props.todos.map(todo => <Todo delete={this.props.delete} key={todo.id} todo={todo} />)
+  }
+  // Previously, key was based off the index provided by map. ^^
+  // Now its using our randomly generated ID, and is less prone to errors in the virtual DOM. 
+  // We'll need both todo.id and todo.text to be passed into Todo so we pass both down as the object, todo.
   render() {
     return(
       <div>
